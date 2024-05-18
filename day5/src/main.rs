@@ -3,9 +3,16 @@ use std::io::{self, BufRead};
 use std:: path::Path;
 
 fn main() {
+    let mut stacks: Vec<Vec<u8>> = vec!();
+
     if let Ok(lines) = read_lines("simple.txt") {
-        for line in lines {
-            
+        let sections: Vec<_> = lines.split(|line| line.is_empty()).collect();
+
+        if let Some(lines) = sections.get(0) {
+            for line in *lines {
+                println!("{}", line);
+                let chars: Vec<_> = line.split(|char| {char == ' '}).collect();
+            }
         }
     }
 }
